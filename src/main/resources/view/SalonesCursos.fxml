@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20.0" style="-fx-padding: 30; -fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label text="🏫 Salones y Cursos Ofertados" textFill="#1a237e">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Separator />
+
+        <GridPane hgap="15.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints prefWidth="120.0" />
+                <ColumnConstraints prefWidth="200.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints prefHeight="30.0" />
+                <RowConstraints prefHeight="30.0" />
+            </rowConstraints>
+            <children>
+                <Label text="Seleccionar Salón:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox fx:id="cmbSalones" promptText="Cargando salones..." prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Nombre del Curso:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField promptText="Ej: Matemática, Comunicación" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+        <Button text="💾 Asignar Curso al Salón" style="-fx-background-color: #1a237e; -fx-text-fill: white; -fx-font-weight: bold;" />
+    </children>
+</VBox>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<HBox spacing="20.0" style="-fx-padding: 25; -fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.controller.GestionAlumnosController">
+    <children>
+
+        <VBox spacing="15.0" prefWidth="380.0" style="-fx-background-color: #f8f9fa; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8;">
+            <children>
+                <Label text="Datos del Alumno" textFill="#1a237e">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Separator />
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="DNI / Usuario:" textFill="#34495e" />
+                        <TextField fx:id="txtDni" promptText="Número de DNI" prefHeight="30.0" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Nombre Completo:" textFill="#34495e" />
+                        <TextField fx:id="txtNombre" promptText="Nombres y Apellidos" prefHeight="30.0" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Contraseña:" textFill="#34495e" />
+                        <PasswordField fx:id="txtClave" promptText="Clave de acceso" prefHeight="30.0" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="5.0">
+                    <children>
+                        <Label text="Asignar Salón:" textFill="#34495e" />
+                        <ComboBox fx:id="cbSalon" promptText="Seleccionar Grado y Sección" prefHeight="30.0" prefWidth="340.0" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="10.0" VBox.vgrow="ALWAYS" />
+                <Separator />
+
+                <GridPane hgap="10.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="50.0" />
+                        <ColumnConstraints percentWidth="50.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="35.0" />
+                        <RowConstraints minHeight="35.0" />
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleGuardar" text="💾 Guardar" prefWidth="200.0" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Button fx:id="btnActualizar" mnemonicParsing="false" onAction="#handleActualizar" text="🔄 Actualizar" prefWidth="200.0" style="-fx-background-color: #1565c0; -fx-text-fill: white; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#handleLimpiarFormulario" text="🧹 Limpiar" prefWidth="200.0" style="-fx-background-color: #ef6c00; -fx-text-fill: white; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleEliminar" text="❌ Eliminar" prefWidth="200.0" style="-fx-background-color: #c62828; -fx-text-fill: white; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+            </children>
+        </VBox>
+
+        <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+            <children>
+                <Label text="🎓 Registro de Alumnos Matriculados" textFill="#1a237e">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Label>
+                <Separator />
+
+                <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <children>
+                        <TextField fx:id="txtBuscar" promptText="Escribe el DNI, Nombre o Salón a buscar..." HBox.hgrow="ALWAYS" prefHeight="35.0" />
+                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#handleBuscar" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #1a237e; -fx-text-fill: white; -fx-font-weight: bold;" text="Buscar" />
+                        <Button fx:id="btnLimpiarFiltro" mnemonicParsing="false" onAction="#handleLimpiarFiltro" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-weight: bold;" text="Resetear" />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="tblAlumnos" VBox.vgrow="ALWAYS" style="-fx-border-color: #e0e0e0;">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colDni" prefWidth="120.0" text="DNI" />
+                        <TableColumn fx:id="colNombre" prefWidth="250.0" text="Nombres y Apellidos" />
+                        <TableColumn fx:id="colSalon" prefWidth="130.0" text="Grado / Sección" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+
+    </children>
+</HBox>

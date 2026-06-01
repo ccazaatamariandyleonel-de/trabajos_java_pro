@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.controller.DashboardAdminController">
+
+    <left>
+        <VBox spacing="10.0" style="-fx-background-color: #1a237e; -fx-padding: 20;" prefWidth="250.0">
+            <children>
+                <Label fx:id="lblNombreUsuario" text="ADMINISTRADOR" textFill="#deff9a">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                </Label>
+
+                <Separator opacity="0.3" />
+
+                <Button mnemonicParsing="false" onAction="#mostrarInicio" prefWidth="210.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;" text="🏠 Inicio / Métricas" />
+
+                <Button mnemonicParsing="false" onAction="#mostrarGestionAlumnos" prefWidth="210.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;" text="🎓 Gestión de Alumnos" />
+
+                <Button mnemonicParsing="false" onAction="#mostrarGestionDocentes" prefWidth="210.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;" text="👨‍🏫 Gestión de Docentes" />
+
+                <Button mnemonicParsing="false" onAction="#mostrarSalonesCursos" prefWidth="210.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;" text="🏫 Salones y Cursos" />
+
+                <Button mnemonicParsing="false" onAction="#mostrarHorarios" prefWidth="210.0" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14;" text="📅 Horarios Académicos" />
+                <Region VBox.vgrow="ALWAYS" />
+                <Separator opacity="0.3" />
+
+                <Button mnemonicParsing="false" onAction="#handleCerrarSesion" prefWidth="210.0" style="-fx-background-color: #c62828; -fx-text-fill: white; -fx-font-weight: bold;" text="🔒 Cerrar Sesión" />
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="conteCentro" style="-fx-background-color: #f5f5f5;">
+            <children>
+                <VBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Label text="Bienvenido al Panel de Control Institucional" textFill="#1a237e">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                        </Label>
+                        <Label text="Por favor, seleccione una opción en el menú izquierdo para empezar a gestionar." textFill="#666666" />
+                    </children>
+                </VBox>
+            </children>
+        </StackPane>
+    </center>
+</BorderPane>
