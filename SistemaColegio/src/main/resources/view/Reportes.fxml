@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.GestionReportesController"
+      styleClass="content-area" spacing="20">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Centro de Reportes y Estadísticas" styleClass="section-title"/>
+    <Label text="Seleccione el tipo de reporte que desea generar:" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+
+    <GridPane hgap="20" vgap="20" VBox.vgrow="ALWAYS">
+        <VBox spacing="10" style="-fx-border-color: #ccc; -fx-padding: 15; -fx-border-radius: 8; -fx-background-color: #fafafa;"
+              GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="280">
+            <Label text="📊 Reporte de Matriculados" style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+            <Label text="Exporta la lista completa de alumnos ordenados por aula." wrapText="true" style="-fx-text-fill: #666;"/>
+            <Button fx:id="btnPDFAlumnos" text="Descargar PDF" styleClass="btn-secondary" onAction="#handleReporteAlumnos"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-border-color: #ccc; -fx-padding: 15; -fx-border-radius: 8; -fx-background-color: #fafafa;"
+              GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="280">
+            <Label text="📅 Resumen de Asistencias" style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+            <Label text="Porcentaje de faltas y tardanzas por mes del colegio." wrapText="true" style="-fx-text-fill: #666;"/>
+            <Button fx:id="btnPDFAsistencia" text="Generar Reporte" styleClass="btn-secondary" onAction="#handleReporteAsistencia"/>
+        </VBox>
+
+        <VBox spacing="10" style="-fx-border-color: #ccc; -fx-padding: 15; -fx-border-radius: 8; -fx-background-color: #fafafa;"
+              GridPane.rowIndex="1" GridPane.columnIndex="0" prefWidth="280">
+            <Label text="🏆 Cuadro de Méritos (Notas)" style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+            <Label text="Lista de los promedios más altos y alumnos en riesgo." wrapText="true" style="-fx-text-fill: #666;"/>
+            <Button fx:id="btnPDFNotas" text="Ver Notas" styleClass="btn-secondary" onAction="#handleReporteNotas"/>
+        </VBox>
+    </GridPane>
+</VBox>

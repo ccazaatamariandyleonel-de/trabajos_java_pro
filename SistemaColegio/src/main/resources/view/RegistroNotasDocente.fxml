@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox spacing="15" alignment="TOP_LEFT" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.RegistroNotasDocenteController">
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <Label text="📝 Registro de Calificaciones" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+    <Label text="Ingrese las notas de los estudiantes según el módulo correspondiente." style="-fx-text-fill: #7F8C8D;"/>
+    <Separator/>
+
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="100" prefWidth="120" />
+            <ColumnConstraints minWidth="200" prefWidth="250" />
+        </columnConstraints>
+        <children>
+            <Label text="ID Alumno:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtIdAlumno" promptText="Ej: 1" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Bimestre:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <ComboBox fx:id="cbBimestre" promptText="Seleccionar" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Calificación:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtNota" promptText="Ej: 16.5" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        </children>
+    </GridPane>
+
+    <HBox spacing="10">
+        <Button text="💾 Guardar Nota" onAction="#handleGuardarNota" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 15;"/>
+        <Button text="🧹 Limpiar" onAction="#handleLimpiar" style="-fx-background-color: #95A5A6; -fx-text-fill: white; -fx-padding: 8 15;"/>
+    </HBox>
+</VBox>

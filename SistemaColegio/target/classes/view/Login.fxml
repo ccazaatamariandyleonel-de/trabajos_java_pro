@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.LoginController"
+      styleClass="login-root"
+      alignment="CENTER" spacing="0">
+
+    <!-- Cabecera azul -->
+    <VBox styleClass="login-header" alignment="CENTER" spacing="8">
+        <Label text="🏫" style="-fx-font-size:48;"/>
+        <Label text="Sistema Académico" styleClass="login-title"/>
+        <Label text="Colegio UPEU" styleClass="login-subtitle"/>
+    </VBox>
+
+    <!-- Formulario -->
+    <VBox styleClass="login-card" spacing="14">
+        <padding><Insets top="32" right="40" bottom="32" left="40"/></padding>
+
+        <Label text="Usuario o DNI" styleClass="login-label"/>
+        <TextField fx:id="txtUsuario" promptText="Ingresa tu usuario o DNI"
+                   styleClass="login-field"/>
+
+        <Label text="Contraseña" styleClass="login-label"/>
+        <PasswordField fx:id="txtPassword" promptText="••••••••"
+                       styleClass="login-field"/>
+
+        <Label fx:id="lblError" styleClass="login-error" wrapText="true"/>
+
+        <Button fx:id="btnIngresar" text="Ingresar al Sistema"
+                styleClass="btn-primary" maxWidth="Infinity"
+                onAction="#handleLogin"/>
+
+        <Label text="Usuario por defecto: admin | Contraseña: admin123"
+               style="-fx-font-size:10; -fx-text-fill:#999; -fx-alignment:CENTER;"
+               alignment="CENTER" maxWidth="Infinity"/>
+    </VBox>
+</VBox>

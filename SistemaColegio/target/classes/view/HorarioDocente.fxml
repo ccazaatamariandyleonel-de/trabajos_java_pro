@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox spacing="15" alignment="TOP_LEFT" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.HorarioDocenteController">
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <Label text="📅 Mi Horario de Clases" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;"/>
+    <Label text="Cronograma de asignaturas y salones asignados para el presente ciclo." style="-fx-text-fill: #7F8C8D;"/>
+    <Separator/>
+
+    <TableView fx:id="tblHorario" prefHeight="250" prefWidth="550">
+        <columns>
+            <TableColumn fx:id="colDia" text="Día" prefWidth="100"/>
+            <TableColumn fx:id="colHora" text="Hora" prefWidth="130"/>
+            <TableColumn fx:id="colCurso" text="Curso" prefWidth="200"/>
+            <TableColumn fx:id="colAula" text="Aula / Salón" prefWidth="100"/>
+        </columns>
+    </TableView>
+</VBox>

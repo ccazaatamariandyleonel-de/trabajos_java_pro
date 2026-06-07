@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox spacing="15" alignment="TOP_LEFT" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.controller.RegistroAsistenciaDocenteController">
+    <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+    <Label text="✅ Control de Asistencia (Estilo UPeU)" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1A365D;"/>
+    <Label text="Seleccione un alumno de la lista y presione el botón inferior para cambiar su estado." style="-fx-text-fill: #7F8C8D;"/>
+    <Separator/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Label text="📅 Fecha:" style="-fx-font-weight: bold;"/>
+        <DatePicker fx:id="dpFechaAsistencia"/>
+    </HBox>
+
+    <TableView fx:id="tblAsistencia" prefHeight="250" prefWidth="550" onMouseClicked="#handleSeleccionarAlumno">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+            <TableColumn fx:id="colNombre" text="Apellidos y Nombres" prefWidth="300"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="160"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button fx:id="btnCambiarEstado" text="🔄 Marcar Asistencia" disable="true" onAction="#handleCambiarEstado"
+                style="-fx-background-color: #34495E; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+
+        <Button text="💾 Guardar Asistencia General" onAction="#handleGuardarAsistenciaBD"
+                style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;"/>
+    </HBox>
+</VBox>

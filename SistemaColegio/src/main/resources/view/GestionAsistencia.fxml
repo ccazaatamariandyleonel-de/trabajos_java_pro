@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.GestionAsistenciaController"
+      styleClass="content-area" spacing="16">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Control de Asistencia Diaria" styleClass="section-title"/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f4f4f4; -fx-padding: 10; -fx-background-radius: 5;">
+        <VBox spacing="4">
+            <Label text="Seleccionar Aula / Salón:" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cbSalones" promptText="-- Seleccione Salón --" prefWidth="200"/>
+        </VBox>
+        <VBox spacing="4">
+            <Label text="Fecha:" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpFecha" prefWidth="150"/>
+        </VBox>
+        <Button fx:id="btnCargarLista" text="🔍 Cargar Alumnos" styleClass="btn-primary" onAction="#handleCargarAlumnos"/>
+    </HBox>
+
+    <TableView fx:id="tablaAsistencia" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colDni"       text="DNI"           prefWidth="100"/>
+            <TableColumn fx:id="colApellidos" text="Apellidos"     prefWidth="180"/>
+            <TableColumn fx:id="colNombres"   text="Nombres"       prefWidth="180"/>
+            <TableColumn fx:id="colEstado"    text="Estado de Asistencia" prefWidth="180"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnGuardarAsistencia" text="💾 Guardar Asistencia del Día" styleClass="btn-primary" onAction="#handleGuardar" disable="true"/>
+    </HBox>
+</VBox>

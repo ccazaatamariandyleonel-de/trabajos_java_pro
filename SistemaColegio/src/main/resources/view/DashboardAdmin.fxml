@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.controller.DashboardAdminController"
+            styleClass="dashboard-root">
+
+    <!-- MENÚ LATERAL IZQUIERDO -->
+    <left>
+        <VBox styleClass="sidebar" spacing="4" prefWidth="200">
+            <padding><Insets top="20" right="10" bottom="20" left="10"/></padding>
+
+            <Label text="🏫 Sistema Colegio" styleClass="sidebar-title"/>
+            <Separator/>
+
+            <Button text="📊  Dashboard"    styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirDashboard"/>
+            <Button text="👨‍🎓  Alumnos"       styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirAlumnos"/>
+            <Button text="👨‍🏫  Docentes"      styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirDocentes"/>
+            <Button text="🏛  Salones"       styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirSalones"/>
+            <Button text="📚  Cursos"        styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirCursos"/>
+            <Button text="✅  Asistencia"    styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirAsistencia"/>
+            <Button text="📝  Notas"         styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirNotas"/>
+            <Button text="📄  Reportes"      styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirReportes"/>
+            <Button text="⚙  Configuración" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#abrirConfig"/>
+
+            <VBox VBox.vgrow="ALWAYS"/>
+            <Separator/>
+            <Button text="🚪  Cerrar Sesión" styleClass="sidebar-btn-danger" maxWidth="Infinity" onAction="#handleCerrarSesion"/>
+        </VBox>
+    </left>
+
+    <!-- CONTENIDO CENTRAL -->
+    <center>
+        <BorderPane fx:id="panelPrincipal">
+            <top>
+                <VBox styleClass="topbar">
+                    <padding><Insets top="16" right="24" bottom="16" left="24"/></padding>
+                    <Label fx:id="lblBienvenida" styleClass="topbar-title"/>
+                </VBox>
+            </top>
+            <center>
+                <!-- Cards de estadísticas por defecto -->
+                <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                    <VBox spacing="20" styleClass="content-area">
+                        <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+                        <Label text="Resumen General" styleClass="section-title"/>
+                        <HBox spacing="16">
+                            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                                <Label text="Total Alumnos" styleClass="stat-label"/>
+                                <Label fx:id="lblTotalAlumnos" text="0" styleClass="stat-value"/>
+                            </VBox>
+                            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                                <Label text="Total Docentes" styleClass="stat-label"/>
+                                <Label fx:id="lblTotalDocentes" text="0" styleClass="stat-value"/>
+                            </VBox>
+                            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                                <Label text="Total Salones" styleClass="stat-label"/>
+                                <Label fx:id="lblTotalSalones" text="0" styleClass="stat-value"/>
+                            </VBox>
+                            <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+                                <Label text="Total Cursos" styleClass="stat-label"/>
+                                <Label fx:id="lblTotalCursos" text="0" styleClass="stat-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </ScrollPane>
+            </center>
+        </BorderPane>
+    </center>
+</BorderPane>

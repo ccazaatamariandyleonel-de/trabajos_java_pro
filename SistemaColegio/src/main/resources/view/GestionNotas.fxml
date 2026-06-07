@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.GestionNotasController"
+      styleClass="content-area" spacing="16">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Registro de Calificaciones Académicas" styleClass="section-title"/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f4f4f4; -fx-padding: 10; -fx-background-radius: 5;">
+        <VBox spacing="4">
+            <Label text="Curso / Asignatura:" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cbCursos" promptText="-- Seleccione Curso --" prefWidth="200"/>
+        </VBox>
+        <VBox spacing="4">
+            <Label text="Aula / Salón:" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="cbSalones" promptText="-- Seleccione Salón --" prefWidth="180"/>
+        </VBox>
+        <Button fx:id="btnFiltrar" text="🔍 Filtrar Alumnos" styleClass="btn-primary" onAction="#handleFiltrarAlumnos"/>
+    </HBox>
+
+    <TableView fx:id="tablaNotas" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colAlumno"    text="Alumno"          prefWidth="280"/>
+            <TableColumn fx:id="colNota1"     text="Nota 1 (Tr. Enc.)" prefWidth="100"/>
+            <TableColumn fx:id="colNota2"     text="Nota 2 (Ex. Par.)" prefWidth="100"/>
+            <TableColumn fx:id="colNota3"     text="Nota 3 (Ex. Fin.)" prefWidth="100"/>
+            <TableColumn fx:id="colPromedio"  text="Promedio Final"   prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnCalcular" text="🧮 Calcular Promedios" styleClass="btn-secondary" onAction="#handleCalcular"/>
+        <Button fx:id="btnGuardarNotas" text="💾 Guardar Registro" styleClass="btn-primary" onAction="#handleGuardar" disable="true"/>
+    </HBox>
+</VBox>

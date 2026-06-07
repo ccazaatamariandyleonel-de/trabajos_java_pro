@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.GestionAlumnosController"
+      styleClass="content-area" spacing="16">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Gestión de Alumnos" styleClass="section-title"/>
+
+    <!-- Barra de búsqueda -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="txtBuscar" promptText="🔍 Buscar por nombre, apellido o DNI..."
+                   prefWidth="350" styleClass="login-field"/>
+    </HBox>
+
+    <!-- Tabla -->
+    <TableView fx:id="tablaAlumnos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colDni"      text="DNI"      prefWidth="100"/>
+            <TableColumn fx:id="colNombre"   text="Nombre"   prefWidth="160"/>
+            <TableColumn fx:id="colApellido" text="Apellido" prefWidth="160"/>
+            <TableColumn fx:id="colSalon"    text="Salón"    prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <!-- Formulario -->
+    <TitledPane text="Datos del Alumno" expanded="true">
+        <GridPane hgap="12" vgap="10">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <Label text="DNI *"        GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDni"      GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200"/>
+
+            <Label text="Nombre *"     GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtNombre"   GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="200"/>
+
+            <Label text="Apellido *"   GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtApellido" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="200"/>
+
+            <Label text="Email"        GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtEmail"    GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="200"/>
+
+            <Label text="Fecha Nac."   GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtFechaNac" GridPane.rowIndex="2" GridPane.columnIndex="1"
+                       prefWidth="200" promptText="YYYY-MM-DD"/>
+        </GridPane>
+    </TitledPane>
+
+    <!-- Botones -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnNuevo"    text="Nuevo"    styleClass="btn-secondary"  onAction="#handleNuevo"/>
+        <Button fx:id="btnGuardar"  text="Guardar"  styleClass="btn-primary"    onAction="#handleGuardar"/>
+        <Button fx:id="btnEliminar" text="Eliminar" styleClass="btn-danger"     onAction="#handleEliminar" disable="true"/>
+    </HBox>
+</VBox>

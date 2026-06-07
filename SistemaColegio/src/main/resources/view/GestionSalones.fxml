@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.GestionSalonController"
+      styleClass="content-area" spacing="16">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Gestión de Salones / Aulas" styleClass="section-title"/>
+
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="txtBuscar" promptText="🔍 Buscar por nombre de salón o grado..."
+                   prefWidth="350" styleClass="login-field"/>
+    </HBox>
+
+    <TableView fx:id="tablaSalones" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNombre"       text="Nombre/Aula"     prefWidth="140"/>
+            <TableColumn fx:id="colGrado"        text="Grado"            prefWidth="140"/>
+            <TableColumn fx:id="colSeccion"      text="Sección"          prefWidth="90"/>
+            <TableColumn fx:id="colNivel"        text="Nivel"            prefWidth="130"/>
+            <TableColumn fx:id="colAnoAcademico" text="Año Académico"    prefWidth="120"/>
+        </columns>
+    </TableView>
+
+    <TitledPane text="Datos del Salón" expanded="true">
+        <GridPane hgap="12" vgap="10">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <Label text="Nombre/Aula *"  GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtNombre"   GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200" promptText="Ej. Aula 101, Lab A"/>
+
+            <Label text="Grado *"        GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtGrado"    GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="200" promptText="Ej. 3ro, 5to"/>
+
+            <Label text="Sección *"      GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtSeccion"  GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="200" promptText="Ej. A, B, Única"/>
+
+            <Label text="Nivel *"        GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtNivel"    GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="200" promptText="Ej. Primaria, Secundaria"/>
+
+            <Label text="Año Académico *" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtAnoAcademico" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="200" promptText="Ej. 2026"/>
+        </GridPane>
+    </TitledPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnNuevo"    text="Nuevo"    styleClass="btn-secondary"  onAction="#handleNuevo"/>
+        <Button fx:id="btnGuardar"  text="Guardar"  styleClass="btn-primary"    onAction="#handleGuardar"/>
+        <Button fx:id="btnEliminar" text="Eliminar" styleClass="btn-danger"     onAction="#handleEliminar" disable="true"/>
+    </HBox>
+</VBox>

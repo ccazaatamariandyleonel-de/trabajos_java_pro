@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pe.edu.upeu.controller.DashboardDocenteController"
+            styleClass="dashboard-root">
+    <left>
+        <VBox styleClass="sidebar" spacing="4" prefWidth="200">
+            <padding><Insets top="20" right="10" bottom="20" left="10"/></padding>
+            <Label text="🏫 Panel Docente" styleClass="sidebar-title"/>
+            <Separator/>
+
+            <Button text="📊  Dashboard"   styleClass="sidebar-btn" maxWidth="Infinity" onAction="#handleMisCursos"/>
+            <Button text="✅  Asistencia"  styleClass="sidebar-btn" maxWidth="Infinity" onAction="#handleVerAsistencia"/>
+            <Button text="📝  Notas"        styleClass="sidebar-btn" maxWidth="Infinity" onAction="#handleVerNotas"/>
+            <Button text="📅  Horario"      styleClass="sidebar-btn" maxWidth="Infinity" onAction="#handleVerHorario"/>
+
+            <VBox VBox.vgrow="ALWAYS"/>
+            <Separator/>
+            <Button text="🚪  Cerrar Sesión" styleClass="sidebar-btn-danger" maxWidth="Infinity" onAction="#handleCerrarSesion"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox fx:id="panelCentral" styleClass="content-area" alignment="TOP_LEFT" spacing="15">
+            <padding><Insets top="40" right="40" bottom="40" left="40"/></padding>
+            <Label fx:id="lblBienvenida" styleClass="section-title"/>
+            <Label text="Selecciona una opción del menú lateral." style="-fx-text-fill:#666; -fx-font-size:14;"/>
+        </VBox>
+    </center>
+</BorderPane>

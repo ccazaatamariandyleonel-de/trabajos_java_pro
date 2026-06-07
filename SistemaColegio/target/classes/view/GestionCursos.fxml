@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.controller.GestionCursoController"
+      styleClass="content-area" spacing="16">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Gestión de Cursos / Asignaturas" styleClass="section-title"/>
+
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <TextField fx:id="txtBuscar" promptText="🔍 Buscar por nombre o código de curso..."
+                   prefWidth="350" styleClass="login-field"/>
+    </HBox>
+
+    <TableView fx:id="tablaCursos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCodigo"      text="Código"      prefWidth="120"/>
+            <TableColumn fx:id="colNombre"      text="Nombre del Curso" prefWidth="250"/>
+            <TableColumn fx:id="colDescripcion" text="Descripción"  prefWidth="250"/>
+        </columns>
+    </TableView>
+
+    <TitledPane text="Datos del Curso" expanded="true">
+        <GridPane hgap="12" vgap="10">
+            <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+
+            <Label text="Código *"       GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtCodigo"   GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="200" promptText="Ej. MAT-101"/>
+
+            <Label text="Nombre *"       GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="txtNombre"   GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="250" promptText="Ej. Matemática I"/>
+
+            <Label text="Descripción"    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="txtDescripcion" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3" prefWidth="500" promptText="Breve descripción del curso..."/>
+        </GridPane>
+    </TitledPane>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="btnNuevo"    text="Nuevo"    styleClass="btn-secondary"  onAction="#handleNuevo"/>
+        <Button fx:id="btnGuardar"  text="Guardar"  styleClass="btn-primary"    onAction="#handleGuardar"/>
+        <Button fx:id="btnEliminar" text="Eliminar" styleClass="btn-danger"     onAction="#handleEliminar" disable="true"/>
+    </HBox>
+</VBox>
