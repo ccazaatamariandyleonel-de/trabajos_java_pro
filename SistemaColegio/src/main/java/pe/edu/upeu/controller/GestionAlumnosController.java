@@ -11,7 +11,7 @@ import pe.edu.upeu.service.AuthService;
 import pe.edu.upeu.dao.UsuarioDAO;
 
 /**
- * Controlador CRUD de Alumnos.
+ * Controlador CRUD de Alumnos - Validación visual (sin alertas)
  */
 public class GestionAlumnosController {
 
@@ -41,72 +41,42 @@ public class GestionAlumnosController {
 
         txtBuscar.textProperty().addListener((obs, old, val) -> buscar(val));
 
-        // Filtro para impedir que escriban más de 8 dígitos
+        // Filtro estricto para DNI
         txtDni.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                txtDni.setText(newValue.replaceAll("[^\\d]", ""));
-            }
-            if (newValue.length() > 8) {
-                txtDni.setText(oldValue);
-            }
+            if (!newValue.matches("\\d*")) txtDni.setText(newValue.replaceAll("[^\\d]", ""));
+            if (newValue.length() > 8) txtDni.setText(oldValue);
         });
     }
 
-    private void cargarDatos() {
-        datos.setAll(alumnoDAO.listarTodos());
+    private void limpiarBordes() {
+        txtDni.setStyle(null);
+        txtNombre.setStyle(null);
+        txtApellido.setStyle(null);
+        txtEmail.setStyle(null);
     }
 
-    private void buscar(String termino) {
-        if (termino == null || termino.isBlank()) {
-            datos.setAll(alumnoDAO.listarTodos());
-        } else {
-            datos.setAll(alumnoDAO.buscar(termino));
-        }
-    }
+    private boolean validar() {
+        limpiarBordes();
+        boolean error = false;
+        String style = "-fx-border-color: red; -fx-border-width: 2px;";
 
-    private void seleccionarAlumno(Alumno a) {
-        alumnoSeleccionado = a;
-        txtDni.setText(a.getDni());
-        txtNombre.setText(a.getNombre());
-        txtApellido.setText(a.getApellido());
-        txtEmail.setText(a.getEmail() != null ? a.getEmail() : "");
-        txtFechaNac.setText(a.getFechaNac() != null ? a.getFechaNac() : "");
-        btnEliminar.setDisable(false);
-    }
+        if (txtDni.getText().trim().length() != 8) { txtDni.setStyle(style); error = true; }
+        if (txtNombre.getText().isBlank()) { txtNombre.setStyle(style); error = true; }
+        if (txtApellido.getText().isBlank()) { txtApellido.setStyle(style); error = true; }
+        if (txtEmail.getText().isBlank()) { txtEmail.setStyle(style); error = true; }
 
-    @FXML
-    private void handleNuevo() {
-        alumnoSeleccionado = null;
-        txtDni.clear(); txtNombre.clear(); txtApellido.clear();
-        txtEmail.clear(); txtFechaNac.clear();
-        btnEliminar.setDisable(true);
-        txtDni.requestFocus();
+        return !error;
     }
 
     @FXML
     private void handleGuardar() {
-        // Validación 1: Campos vacíos
-        if (txtDni.getText().isBlank() || txtNombre.getText().isBlank() || txtApellido.getText().isBlank() || txtEmail.getText().isBlank()) {
-            alerta("DNI, Nombre y Apellido y Email son obligatorios.", Alert.AlertType.WARNING);
-            return;
-        }
-
-        // Validación 2: Exactamente 8 dígitos
-        if (txtDni.getText().trim().length() != 8) {
-            alerta("El DNI debe tener exactamente 8 dígitos.", Alert.AlertType.ERROR);
-            return;
-        }
+        if (!validar()) return; // Si hay error, se marcan en rojo y se detiene la ejecución
 
         if (alumnoSeleccionado == null) {
-            // Crear usuario
-            String username = txtDni.getText().trim();
             String passHash = AuthService.hashPassword(txtDni.getText().trim());
-            int usuarioId = usuarioDAO.crearUsuario(username, passHash, 3);
+            int usuarioId = usuarioDAO.crearUsuario(txtDni.getText().trim(), passHash, 3);
 
-            if (usuarioId < 0) {
-                alerta("No se pudo crear el usuario (¿DNI duplicado?).", Alert.AlertType.ERROR);
-                return;
-            }
+            if (usuarioId < 0) return;
 
             Alumno nuevo = new Alumno();
             nuevo.setUsuarioId(usuarioId);
@@ -117,12 +87,10 @@ public class GestionAlumnosController {
             nuevo.setFechaNac(txtFechaNac.getText().trim());
 
             if (alumnoDAO.insertar(nuevo)) {
-                alerta("Alumno registrado exitosamente.", Alert.AlertType.INFORMATION);
                 cargarDatos();
                 handleNuevo();
             }
         } else {
-            // Actualizar alumno
             alumnoSeleccionado.setDni(txtDni.getText().trim());
             alumnoSeleccionado.setNombre(txtNombre.getText().trim());
             alumnoSeleccionado.setApellido(txtApellido.getText().trim());
@@ -130,32 +98,45 @@ public class GestionAlumnosController {
             alumnoSeleccionado.setFechaNac(txtFechaNac.getText().trim());
 
             if (alumnoDAO.actualizar(alumnoSeleccionado)) {
-                alerta("Alumno actualizado correctamente.", Alert.AlertType.INFORMATION);
                 cargarDatos();
                 handleNuevo();
             }
         }
     }
 
+    private void cargarDatos() { datos.setAll(alumnoDAO.listarTodos()); }
+
+    private void buscar(String termino) {
+        if (termino == null || termino.isBlank()) datos.setAll(alumnoDAO.listarTodos());
+        else datos.setAll(alumnoDAO.buscar(termino));
+    }
+
+    private void seleccionarAlumno(Alumno a) {
+        alumnoSeleccionado = a;
+        txtDni.setText(a.getDni());
+        txtNombre.setText(a.getNombre());
+        txtApellido.setText(a.getApellido());
+        txtEmail.setText(a.getEmail() != null ? a.getEmail() : "");
+        txtFechaNac.setText(a.getFechaNac() != null ? a.getFechaNac() : "");
+        btnEliminar.setDisable(false);
+        limpiarBordes();
+    }
+
+    @FXML
+    private void handleNuevo() {
+        alumnoSeleccionado = null;
+        txtDni.clear(); txtNombre.clear(); txtApellido.clear();
+        txtEmail.clear(); txtFechaNac.clear();
+        btnEliminar.setDisable(true);
+        limpiarBordes();
+        txtDni.requestFocus();
+    }
+
     @FXML
     private void handleEliminar() {
         if (alumnoSeleccionado == null) return;
-        Alert conf = new Alert(Alert.AlertType.CONFIRMATION,
-                "¿Eliminar al alumno " + alumnoSeleccionado.getNombreCompleto() + "?",
-                ButtonType.YES, ButtonType.NO);
-        conf.showAndWait().ifPresent(btn -> {
-            if (btn == ButtonType.YES) {
-                alumnoDAO.eliminar(alumnoSeleccionado.getId());
-                cargarDatos();
-                handleNuevo();
-            }
-        });
-    }
-
-    private void alerta(String msg, Alert.AlertType tipo) {
-        Alert a = new Alert(tipo);
-        a.setHeaderText(null);
-        a.setContentText(msg);
-        a.showAndWait();
+        alumnoDAO.eliminar(alumnoSeleccionado.getId());
+        cargarDatos();
+        handleNuevo();
     }
 }

@@ -1,19 +1,25 @@
-/* ================================================
-   SISTEMA ACADÉMICO COLEGIO UPEU - Estilos Globales
-   ================================================ */
+/* =========================================================================
+   SISTEMA ACADÉMICO COLEGIO UPEU - HOJA DE ESTILOS MAESTRA
+   =========================================================================
+   Instrucciones:
+   - Cambiar colores globales: Busca la sección de PALETA.
+   - Ajustar tamaños/espacios: Busca los valores con 'padding' o 'radius'.
+   ========================================================================= */
 
-/* ---- ROOT / FONDOS ---- */
+/* ---- [1] PALETA Y FONDOS GLOBALES ------------------------------------- */
+/* Cambia el tono general de la app aquí */
 .login-root {
-    -fx-background-color: #f0f4f8;
+    -fx-background-color: #f0f4f8; /* Color fondo pantalla principal */
 }
 
 .dashboard-root {
-    -fx-background-color: #f0f4f8;
+    -fx-background-color: #f0f4f8; /* Color fondo dashboard */
 }
 
-/* ---- LOGIN ---- */
+/* ---- [2] LOGIN / AUTENTICACIÓN ---------------------------------------- */
+/* HEADER DEL LOGIN */
 .login-header {
-    -fx-background-color: #1a3a5c;
+    -fx-background-color: #1a3a5c; /* Color Corporativo Principal */
     -fx-padding: 40 0 30 0;
     -fx-min-height: 160;
 }
@@ -29,6 +35,7 @@
     -fx-text-fill: #a8c0d6;
 }
 
+/* TARJETA (CARD) LOGIN: Cambiar 'background-radius' para bordes suaves */
 .login-card {
     -fx-background-color: white;
     -fx-background-radius: 0 0 12 12;
@@ -37,12 +44,7 @@
     -fx-min-width: 380;
 }
 
-.login-label {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #34495e;
-}
-
+/* CAMPOS DE TEXTO: Cambia 'border-color' para cambiar el color de los bordes */
 .login-field {
     -fx-font-size: 14px;
     -fx-padding: 10 14 10 14;
@@ -53,19 +55,21 @@
     -fx-background-color: #fafbfc;
 }
 
+/* FOCO (Cuando el usuario selecciona el campo): Cambia color para resaltar */
 .login-field:focused {
-    -fx-border-color: #1a73e8;
+    -fx-border-color: #1a73e8; /* Color azul activo */
     -fx-background-color: white;
     -fx-effect: dropshadow(gaussian, rgba(26,115,232,0.25), 6, 0, 0, 0);
 }
 
 .login-error {
-    -fx-text-fill: #d93025;
+    -fx-text-fill: #d93025; /* Color rojo de error */
     -fx-font-size: 12px;
     -fx-min-height: 16;
 }
 
-/* ---- BOTONES ---- */
+/* ---- [3] BOTONES GLOBALES -------------------------------------------- */
+/* BOTÓN PRIMARIO (Guardar, Ingresar): Cambia background-color para tu marca */
 .btn-primary {
     -fx-background-color: #1a73e8;
     -fx-text-fill: white;
@@ -77,9 +81,10 @@
 }
 
 .btn-primary:hover {
-    -fx-background-color: #1557b0;
+    -fx-background-color: #1557b0; /* Oscurece el botón al pasar el mouse */
 }
 
+/* BOTÓN SECUNDARIO (Limpiar, Volver) */
 .btn-secondary {
     -fx-background-color: #e8eaf6;
     -fx-text-fill: #3949ab;
@@ -91,9 +96,10 @@
 }
 
 .btn-secondary:hover {
-    -fx-background-color: #c5cae9;
+    -fx-background-color: #c5cae93B;
 }
 
+/* BOTÓN PELIGRO (Eliminar) */
 .btn-danger {
     -fx-background-color: #ea4335;
     -fx-text-fill: white;
@@ -108,7 +114,8 @@
     -fx-background-color: #c62828;
 }
 
-/* ---- SIDEBAR ---- */
+/* ---- [4] SIDEBAR (MENÚ LATERAL) -------------------------------------- */
+/* MENÚ: Cambia el background para otro tono institucional */
 .sidebar {
     -fx-background-color: #1a3a5c;
     -fx-min-height: 600;
@@ -121,6 +128,7 @@
     -fx-padding: 0 0 10 4;
 }
 
+/* ÍTEMS DEL MENÚ: Cambia text-fill para ajustar visibilidad */
 .sidebar-btn {
     -fx-background-color: transparent;
     -fx-text-fill: #a8c0d6;
@@ -151,7 +159,7 @@
     -fx-text-fill: #ff5252;
 }
 
-/* ---- TOP BAR ---- */
+/* ---- [5] TOP BAR (BARRA SUPERIOR) ------------------------------------ */
 .topbar {
     -fx-background-color: white;
     -fx-border-color: #e0e0e0;
@@ -164,7 +172,7 @@
     -fx-text-fill: #1a3a5c;
 }
 
-/* ---- STAT CARDS ---- */
+/* ---- [6] ESTADÍSTICAS (STAT CARDS) ----------------------------------- */
 .stat-card {
     -fx-background-color: white;
     -fx-background-radius: 10;
@@ -186,7 +194,7 @@
     -fx-text-fill: #1a73e8;
 }
 
-/* ---- CONTENIDO ---- */
+/* ---- [7] CONTENIDO Y TABLAS ------------------------------------------ */
 .content-area {
     -fx-background-color: #f0f4f8;
 }
@@ -202,13 +210,14 @@
     -fx-text-fill: #1a3a5c;
 }
 
-/* ---- TABLA ---- */
+/* TABLA: Cambia background-color si prefieres un fondo oscuro para la tabla */
 .table-view {
     -fx-background-color: white;
     -fx-background-radius: 8;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 6, 0, 0, 2);
 }
 
+/* CABECERA DE TABLA: Asegúrate de que combine con el color de tu Sidebar */
 .table-view .column-header {
     -fx-background-color: #1a3a5c;
     -fx-text-fill: white;
@@ -219,6 +228,7 @@
     -fx-font-weight: bold;
 }
 
+/* SELECCIÓN DE FILA: Cambia este color para que resalte la fila al hacer clic */
 .table-row-cell:selected {
     -fx-background-color: #e3f2fd;
 }
