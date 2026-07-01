@@ -1,5 +1,6 @@
 package pe.edu.upeu.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,10 +10,11 @@ import pe.edu.upeu.dao.AlumnoDAO;
 import pe.edu.upeu.model.Alumno;
 import pe.edu.upeu.service.AuthService;
 import pe.edu.upeu.dao.UsuarioDAO;
+import pe.edu.upeu.util.ConsultaDNI;
+import pe.edu.upeu.util.PersonaDto;
 
-/**
- * Controlador CRUD de Alumnos - Validación visual (sin alertas)
- */
+import java.util.concurrent.CompletableFuture;
+
 public class GestionAlumnosController {
 
     @FXML private TableView<Alumno> tablaAlumnos;
@@ -41,41 +43,43 @@ public class GestionAlumnosController {
 
         txtBuscar.textProperty().addListener((obs, old, val) -> buscar(val));
 
-        // Filtro estricto para DNI
         txtDni.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) txtDni.setText(newValue.replaceAll("[^\\d]", ""));
             if (newValue.length() > 8) txtDni.setText(oldValue);
         });
     }
 
-    private void limpiarBordes() {
-        txtDni.setStyle(null);
-        txtNombre.setStyle(null);
-        txtApellido.setStyle(null);
-        txtEmail.setStyle(null);
-    }
+    @FXML
+    private void handleBuscarDni() {
+        String dni = txtDni.getText().trim();
+        if (dni.length() != 8) {
+            txtDni.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
+            return;
+        }
 
-    private boolean validar() {
-        limpiarBordes();
-        boolean error = false;
-        String style = "-fx-border-color: red; -fx-border-width: 2px;";
+        CompletableFuture.runAsync(() -> {
+            ConsultaDNI consulta = new ConsultaDNI();
+            PersonaDto p = consulta.consultarDNI(dni);
 
-        if (txtDni.getText().trim().length() != 8) { txtDni.setStyle(style); error = true; }
-        if (txtNombre.getText().isBlank()) { txtNombre.setStyle(style); error = true; }
-        if (txtApellido.getText().isBlank()) { txtApellido.setStyle(style); error = true; }
-        if (txtEmail.getText().isBlank()) { txtEmail.setStyle(style); error = true; }
-
-        return !error;
+            Platform.runLater(() -> {
+                if (p != null && p.getNombre() != null && !p.getNombre().isEmpty()) {
+                    txtNombre.setText(p.getNombre());
+                    txtApellido.setText(p.getApellidoPaterno() + " " + p.getApellidoMaterno());
+                    txtDni.setStyle(null);
+                } else {
+                    txtDni.setStyle("-fx-border-color: orange;");
+                }
+            });
+        });
     }
 
     @FXML
     private void handleGuardar() {
-        if (!validar()) return; // Si hay error, se marcan en rojo y se detiene la ejecución
+        if (!validar()) return;
 
         if (alumnoSeleccionado == null) {
             String passHash = AuthService.hashPassword(txtDni.getText().trim());
             int usuarioId = usuarioDAO.crearUsuario(txtDni.getText().trim(), passHash, 3);
-
             if (usuarioId < 0) return;
 
             Alumno nuevo = new Alumno();
@@ -138,5 +142,23 @@ public class GestionAlumnosController {
         alumnoDAO.eliminar(alumnoSeleccionado.getId());
         cargarDatos();
         handleNuevo();
+    }
+
+    private void limpiarBordes() {
+        txtDni.setStyle(null);
+        txtNombre.setStyle(null);
+        txtApellido.setStyle(null);
+        txtEmail.setStyle(null);
+    }
+
+    private boolean validar() {
+        limpiarBordes();
+        boolean error = false;
+        String style = "-fx-border-color: red; -fx-border-width: 2px;";
+        if (txtDni.getText().trim().length() != 8) { txtDni.setStyle(style); error = true; }
+        if (txtNombre.getText().isBlank()) { txtNombre.setStyle(style); error = true; }
+        if (txtApellido.getText().isBlank()) { txtApellido.setStyle(style); error = true; }
+        if (txtEmail.getText().isBlank()) { txtEmail.setStyle(style); error = true; }
+        return !error;
     }
 }
