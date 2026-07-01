@@ -34,7 +34,7 @@ public class DashboardDocenteController {
 
         // Validación de seguridad obligatoria para evitar el NullPointerException
         if (panelCentral == null) {
-            System.err.println("⚠️ El panelCentral no está enlazado correctamente en el FXML.");
+            System.err.println("⚠ El panelCentral no está enlazado correctamente en el FXML.");
             return;
         }
 
@@ -81,7 +81,7 @@ public class DashboardDocenteController {
     private void cargarPantallaInterna(String nombreFxml) {
         try {
             if (panelCentral == null) {
-                System.err.println("⚠️ No se pueden cargar pantallas porque panelCentral es nulo.");
+                System.err.println("⚠ No se pueden cargar pantallas porque panelCentral es nulo.");
                 return;
             }
 
@@ -95,7 +95,7 @@ public class DashboardDocenteController {
             java.net.URL urlFxml = getClass().getResource(rutaCompleta);
 
             if (urlFxml == null) {
-                System.err.println("❌ ERROR CRÍTICO: No se encontró el archivo " + nombreFxml + ".fxml en resources/view/");
+                System.err.println(" ERROR CRÍTICO: No se encontró el archivo " + nombreFxml + ".fxml en resources/view/");
                 return;
             }
 
@@ -104,7 +104,7 @@ public class DashboardDocenteController {
             Parent vistaInterna = loader.load();
 
             panelCentral.getChildren().add(vistaInterna);
-            System.out.println("✅ ¡Vista Docente [" + nombreFxml + "] cargada con éxito!");
+            System.out.println(" ¡Vista Docente [" + nombreFxml + "] cargada con éxito!");
 
         } catch (IOException e) {
             System.err.println("Error crítico al abrir la pantalla interna del docente " + nombreFxml + ": " + e.getMessage());

@@ -50,7 +50,7 @@ public class AsistenciaAlumnoController {
             ps.setInt(1, alumnoId);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    // Tomamos el estado exactamente como lo guardó el docente (ej: "✅ Asistió")
+                    // Tomamos el estado exactamente como lo guardó el docente (ej: " Asistió")
                     listaAsistencias.add(new FilaAsistencia(
                             rs.getString("fecha"),
                             rs.getString("curso_nombre"),

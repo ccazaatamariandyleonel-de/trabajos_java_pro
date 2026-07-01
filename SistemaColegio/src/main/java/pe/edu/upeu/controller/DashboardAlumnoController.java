@@ -78,7 +78,7 @@ public class DashboardAlumnoController {
             java.net.URL urlFxml = getClass().getResource(rutaCompleta);
 
             if (urlFxml == null) {
-                System.err.println("❌ ERROR: No se encontró el archivo " + nombreFxml + ".fxml");
+                System.err.println(" ERROR: No se encontró el archivo " + nombreFxml + ".fxml");
                 return;
             }
 
@@ -86,7 +86,7 @@ public class DashboardAlumnoController {
             Parent vistaInterna = loader.load();
 
             panelCentral.getChildren().add(vistaInterna);
-            System.out.println("✅ ¡Vista " + nombreFxml + " cargada con éxito!");
+            System.out.println(" ¡Vista " + nombreFxml + " cargada con éxito!");
 
         } catch (IOException e) {
             System.err.println("Error al cargar la pantalla interna " + nombreFxml + ": " + e.getMessage());

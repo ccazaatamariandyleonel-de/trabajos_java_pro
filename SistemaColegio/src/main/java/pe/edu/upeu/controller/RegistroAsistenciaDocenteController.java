@@ -55,7 +55,7 @@ public class RegistroAsistenciaDocenteController {
         AlumnoAsistencia seleccionado = tblAsistencia.getSelectionModel().getSelectedItem();
         if (seleccionado != null) {
             btnCambiarEstado.setDisable(false);
-            btnCambiarEstado.setText("🔄 Cambiar Estado de: " + seleccionado.getId());
+            btnCambiarEstado.setText(" Cambiar Estado de: " + seleccionado.getId());
         }
     }
 
@@ -67,9 +67,9 @@ public class RegistroAsistenciaDocenteController {
             String nuevoEstado;
 
             switch (estadoActual) {
-                case "❌ Falta": nuevoEstado = "✅ Asistió"; break;
-                case "✅ Asistió": nuevoEstado = "⚠️ Tardanza"; break;
-                default: nuevoEstado = "❌ Falta"; break;
+                case " Falta": nuevoEstado = " Asistió"; break;
+                case " Asistió": nuevoEstado = "⚠ Tardanza"; break;
+                default: nuevoEstado = " Falta"; break;
             }
             seleccionado.setEstado(nuevoEstado);
             tblAsistencia.refresh();
@@ -127,7 +127,7 @@ public class RegistroAsistenciaDocenteController {
         public AlumnoAsistencia(int id, String nombre) {
             this.id = id;
             this.nombre = nombre;
-            this.estado = "❌ Falta";
+            this.estado = " Falta";
         }
 
         public int getId() { return id; }
